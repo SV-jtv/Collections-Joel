@@ -2,90 +2,25 @@ import java.util.*
 
 fun main() {
     val scan = Scanner(System.`in`)
-    val diccionari : MutableMap<String,String> = sortedMapOf()
+    val tasques: MutableMap<Int,String> = mutableMapOf()
+    val ordre: MutableList<Int> = mutableListOf()
 
     repeat(scan.nextInt()) {
         val rep = scan.nextInt()
+        val prioritari = scan.nextInt()-1
         scan.nextLine()
-        repeat(rep - 1) {
-            val data = scan.nextLine().split("-")
-            diccionari.put(data[0], data[1])
+        repeat(rep) {
+            val key = scan.nextInt()
+            val value = scan.nextLine()
+            tasques[key] = value
+            ordre.add(key)
         }
-        val value = scan.nextLine()
-        println(diccionari)
-        for (i in diccionari) if (i.value == value) println(i.key)
-        diccionari.clear()
+
+        ordre.sort()
+        for (i in ordre.indices) if (i == prioritari) {
+            println(tasques.getValue(ordre[i]))
+        }
+        ordre.clear()
+        tasques.clear()
     }
-}
-
-class Alumne: Comparable<Alumne> {
-    private var nom:String
-    private var edat:Int = 0
-    constructor(nom:String, edat:Int) {
-        this.nom = nom
-        this.edat = edat
-    }
-
-
-
-    override fun toString(): String {
-        return "Alumne(nom='$nom', edat=$edat)"
-    }
-    override fun compareTo(other: Alumne): Int {
-        var result : Int
-
-        if (this.edat != other.edat)
-            result = this.edat - other.edat
-        else
-            result = this.nom.compareTo(other.nom)
-
-        return result
-    }
-
-}
-fun aaa() {
-    //Definim la cua amb prioritat
-    val cua : PriorityQueue<Alumne> = PriorityQueue<Alumne>()
-
-    //Afegim elements a la cua
-    val a1:Alumne = Alumne ("Joan", 20)
-    val a2:Alumne = Alumne ("Joan", 18)
-    val a3:Alumne = Alumne ("Pep", 18)
-    val a4:Alumne = Alumne ("Maria", 25)
-    cua.add(a1)
-    cua.add(a2)
-    cua.add(a3)
-    cua.add(a4)
-
-    //Mostrem el contingut de la cua
-    println("Contingut de la cua: ${cua.toString()}")
-
-    //Treiem un element de la cua
-    println("Treiem un element de la cua: ${cua.poll()}")
-    println("Contingut de la cua: ${cua.toString()}")
-    val a5:Alumne = Alumne ("Pau", 22)
-    cua.add(a5)
-    println("Contingut de la cua: ${cua.toString()}")
-
-    //Recorrer la cua sense treure els elements
-    println("Recorrem la cua sense treure els elements")
-    for (i in cua) {
-        println(i)
-    }
-
-    //Mirar el primer element, sense treure'l
-    val front = cua.peek()
-    println("El primer element de la cua és: $front")
-    println("Contingut de la cua: ${cua.toString()}")
-
-    //Treure tots els elements de la cua
-    println("Treure tots els elements de la cua")
-    while (!cua.isEmpty()) {
-        println(cua.poll())
-    }
-    println("Contingut de la cua: ${cua.toString()}")
-
-    //Està buida?
-    println("Està buida?: ${cua.isEmpty()}")
-
 }

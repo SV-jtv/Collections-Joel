@@ -17,7 +17,7 @@ fun main() {
         diccionari.clear()
     }
 }
-
+/*
 fun rivas() {
     //Definim el mapa (map) i el mapa mutable (buit)
     val mapa : Map<Int,String> = mapOf(1 to "Un", 2 to "Dos", 3 to "Tres")
@@ -46,3 +46,4 @@ fun rivas() {
     println("Està buit?: ${mapa.isEmpty()}")
 
 }
+*/
